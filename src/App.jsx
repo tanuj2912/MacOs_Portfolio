@@ -1,11 +1,12 @@
 // https://youtu.be/j9ZD_hlyHOA?si=kDzB9pJqEyYXtWW_
 
-import Navbar from "./components/Navbar";
+import { Navbar, Welcome } from "./components";
 
 const App = () => {
   return (
     <main>
       <Navbar/>
+      <Welcome/>
     </main>
   )
 }
