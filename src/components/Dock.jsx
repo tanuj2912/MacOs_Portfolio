@@ -5,9 +5,11 @@ import { dockApps } from '../constants/index.js'
 import { useGSAP } from '@gsap/react'
 import useWindowstore from '../store/window.js'
 
-const Dock = () => {
+const Dock = () => { 
+  
 
-  const { openWindow, closeWindow, windows } = useWindowstore();
+  const { openWindow, closeWindow, windows
+   } = useWindowstore();
 
   const dockRef = useRef(null)
 
@@ -15,7 +17,7 @@ const Dock = () => {
     const dock = dockRef.current
     if (!dock) return
 
-    const icons = dock.querySelectorAll('.dock-icon')
+    const icons = dock.querySelectorAll(".dock-icon")
 
     const animateIcons = (mouseX) => {
       const { left } = dock.getBoundingClientRect()
@@ -41,16 +43,15 @@ const Dock = () => {
       animateIcons(e.clientX - left)
     }
 
-    const resetIcons = () => {
-      icons.forEach((icon) => {
+    const resetIcons = () => 
+      icons.forEach((icon) => 
         gsap.to(icon, {
           scale: 1,
           y: 0,
           duration: 0.3,
           ease: 'power1.out'
         })
-      })
-    }
+    )   
 
     dock.addEventListener('mousemove', handleMouseMove)
     dock.addEventListener('mouseleave', resetIcons)
@@ -86,7 +87,7 @@ const toggleApp = (app) => {
       <div ref={dockRef} className="dock-container">
 
         {dockApps.map(({ id, name, icon, canOpen }) => (
-          <div key={id} className="relative flex justify-center">
+          <div key={id ?? name} className="relative flex justify-center">
             <button
               type="button"
               className="dock-icon"

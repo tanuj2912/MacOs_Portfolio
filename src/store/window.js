@@ -4,13 +4,12 @@ import { INITIAL_Z_INDEX, WINDOW_CONFIG } from '../constants';
 
 const useWindowStore = create(
   immer((set) => ({
-    window: WINDOW_CONFIG,
+    windows: WINDOW_CONFIG,
     nextZIndex: INITIAL_Z_INDEX + 1,
 
     openWindow: (windowKey, data = null) =>
       set((state) => {
-        const win = state.window[windowKey];
-       
+        const win = state.windows[windowKey];       
 
         win.isOpen = true;
         win.zIndex = state.nextZIndex;
@@ -20,7 +19,7 @@ const useWindowStore = create(
 
     closeWindow: (windowKey) =>
       set((state) => {
-        const win = state.window[windowKey];
+        const win = state.windows[windowKey];
         if(!win) return;       
 
         win.isOpen = false;
@@ -30,10 +29,8 @@ const useWindowStore = create(
 
     focusWindow: (windowKey) =>
       set((state) => {
-        const win = state.window[windowKey];     
-        win.zIndex = state.nextZIndex++;
-        
-        
+        const win = state.windows[windowKey];     
+        win.zIndex = state.nextZIndex++;        
       }),
   }))
 );
